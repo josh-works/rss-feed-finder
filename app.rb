@@ -1,4 +1,5 @@
 require './lib/feed_checker'
+require 'sinatra'
 
 get '/' do
   erb :index
