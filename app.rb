@@ -2,6 +2,7 @@ require 'sinatra'
 require 'pry'
 require 'httparty'
 require 'uri'
+require './lib/feed_checker'
 
 get '/' do
   erb :index
@@ -9,20 +10,12 @@ end
 
 post '/results' do
   @results = check_url(params["url"])
-  erb :result, locals: { params: @results }
+  erb :results, locals: { params: @results }
 end
 
 def check_url(submitted_url)
-  url = build_url(submitted_url)
-  feed = HTTParty.get("#{url}/feed")
-  rss = HTTParty.get("#{url}/rss")
-  require "pry"; binding.pry
-  
-  feed
+  checker = FeedChecker.new(submitted_url)
+  checker.process
+  checker.results
 end
 
-def build_url(submitted_url)
-  require "pry"; binding.pry
-  if url =~ URI::regexp
-    # Correct URL
-end
