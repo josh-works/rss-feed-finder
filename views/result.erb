@@ -1,5 +1,52 @@
-<p>
-  You inquired about <%= @params["url"].to_s %>
-</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Does It Have an RSS Feed?</title>
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
 
-<pre><%= @results %></pre>
+</head>
+<body>
+  <header>
+    Does It RSS?
+  </header>
+    <h1>Regain Control of the World Wide Web with RSS Feeds!</h1>
+    
+    
+    <p>
+      You inquired about <%= @params["url"].to_s %>
+    </p>
+
+    <pre>Results are: <%= @results %></pre>
+    
+    <p>Enter a URL below and we'll check to see if it has an RSS feed:</p>
+    
+    <form class="" action="results" method="post">
+      URL: <input type="text" name="url">
+      
+      <input type="submit" value="submit">
+    </form>
+    
+    
+    <br>
+    <br>
+    <br>
+    <footer style="font-size:small;">
+      <ul style="">
+        <p>This tiny project inspired by <a href="https://news.ycombinator.com/item?id=26049153">this HN comment</a> on the thread titled: <em>Turn to RSS Feeds to Regain Control of the World Wide Web (techrights.org)</em>
+        </p>
+        <p>
+          <i>A tip for those who love RSS but bemoan the slow death it's suffering: Sometimes it helps to simply send an e-mail to the owner of the website and thell them their RSS feed is broken or missing. I've done that and succeeded three times so far.</i>
+        </p>
+        <p>
+          <i>Sometimes they break the feed because they changed something but didn't bother to check if it affected their feed. This of course won't be of any effect to the big SV type companies, but it might with your local newspaper, municipality website, favourite blog, etc. Doesn't hurt to try. </i>
+        </p>
+        <p>Created as part of <a href="https://intermediateruby.com/sinatra-basics">Intermediate Ruby</a></p>
+        <p>Built with ❤ by <a href="https://twitter.com/josh_works">Josh Thompson</a></p>
+        <p>A few today-i-learned entries for this project: <a href="https://github.com/josh-works/til/tree/main/sinatra">til/sinatra</a></p>
+      </ul>
+    </footer>
+</body>
+</html>

@@ -6,8 +6,18 @@ get '/' do
 end
 
 post '/results' do
-  @results = check_url(params["url"])
+  query = {
+    submitted_url: params["url"]
+  }
+  @results = prepare_results(query)
   erb :result, locals: { params: @results }
+end
+
+private
+
+def prepare_results(query = {})
+  
+  
 end
 
 def check_url(submitted_url)
