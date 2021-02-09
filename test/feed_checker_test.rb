@@ -4,6 +4,7 @@ require './lib/feed_checker'
 
 class FeedCheckerTest < Minitest::Test
   def test_it_returns_valid_url
+    skip
     submitted_url = "https://josh.works/"
     checker = FeedChecker.new(submitted_url)
     checker.process
@@ -18,8 +19,28 @@ class FeedCheckerTest < Minitest::Test
   end
   
   def test_it_builds_url_from_string
+    skip
     submitted_url = "josh.works"
     checker = FeedChecker.new(submitted_url)
     assert_equal "josh.works/", checker.url
   end
+  
+  def test_urlify_adds_https_to_beginning_of_string
+    checker = FeedChecker.new("example.com")
+    
+    results = checker.stringify_url
+    
+    assert_equal "https://example.com", results
+  end
+  
+  def test_urlify_doesnt_add_https_if_provided_already
+    skip
+    checker = FeedChecker.new("https://example.com")
+    
+    results = checker.stringify_url
+    
+    assert_equal "https://example.com", results
+  end
+  
+  
 end

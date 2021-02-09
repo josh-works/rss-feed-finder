@@ -4,7 +4,7 @@ require 'httparty'
 class FeedChecker
   attr_reader :url, :results
   def initialize(url)
-    @url = process_url(url)
+    @url = url
     @results = {}
   end
   
@@ -14,16 +14,15 @@ class FeedChecker
     check_rss
   end
   
-  def process_url(url)
-    url.strip!
-    # add https:// if doesn't start with it?
-    
-    # adds trailing `/` if doesn't end with it
-    unless url =~ /[\/]\z/
-      url += "/"
+  def stringify_url
+    temp = URI.parse(url.strip)
+    case temp
+    when URI::Generic
+      # add https:// if doesn't start with it?
+      @url = "https://" + url.to_s
+    else
+      url.to_s
     end
-    
-    url
   end
   
   def check_base
